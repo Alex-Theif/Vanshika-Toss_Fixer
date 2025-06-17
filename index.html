@@ -47,12 +47,21 @@ src="https://www.facebook.com/tr?id=1002939585159295&ev=PageView&noscript=1"
 
 
      <script>
-                document.getElementById('blinking-button').addEventListener('click', function() {
-                fbq('track', 'Subscribe'); // Fire Meta event
-                 setTimeout(function() {
-             window.location.href = "https://t.me/+kCgB-EK_d-5kNzhl"; // Redirect after delay
-                }, 200); // 200ms delay gives Meta time to capture the event
-                 });
-      </script>
+  document.getElementById('blinking-button').addEventListener('click', function() {
+    // Generate unique event ID using timestamp + random number
+    var eventID = 'subscribe_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
+
+    // Track with Meta Pixel and include eventID
+    fbq('track', 'Subscribe', {}, { eventID: eventID });
+
+    // Optional: log it for debugging
+    // console.log("Meta Subscribe Event ID:", eventID);
+
+    // Delay redirect to give Meta time
+    setTimeout(function() {
+      window.location.href = "https://t.me/+kCgB-EK_d-5kNzhl";
+    }, 200);
+  });
+</script>
 </body>
 </html>
